@@ -1,6 +1,7 @@
 import { Niivue } from '@niivue/niivue'
 // IMPORTANT: we need to import this specific file. 
-import meshnet from "./net.js"
+import subcortical from "./net_subcortical.js"
+import tissue_fast from './net_tissue_fast.js'
 
 async function main() {
   clipCheck.onchange = function () {
@@ -53,7 +54,7 @@ async function main() {
   const getDevice = async () => {
     if (!navigator.gpu) return false;
     const requiredLimits = {};
-    const maxBufferSize = 335544320;
+    const maxBufferSize = 2013265920;
     requiredLimits.maxStorageBufferBindingSize = maxBufferSize;
     requiredLimits.maxBufferSize = maxBufferSize;
     const adapter = await navigator.gpu.requestAdapter();
@@ -86,7 +87,8 @@ async function main() {
 
     // Setup tinygrad meshnet model: get a WebGPU device, load weights
     const device = await getDevice();
-    const session = await meshnet.load(device, "./net.safetensors");
+    // const subcorticalSession = await subcortical.load(device, "./net_subcortical.safetensors");
+    const tissuefastSession = await tissue_fast.load(device, "./net_tissue_fast.safetensors");
 
     const shape = [1, 1, 256, 256, 256]
     const nvox = shape.reduce((a, b) => a * b)
@@ -94,7 +96,7 @@ async function main() {
       throw new Error(`img32 length (${img32.length}) does not match expected tensor length (${expectedLength})`)
     }
     // run tinygrad inference
-    const results = await session(img32);
+    const results = await tissuefastSession(img32);
     // Can be multi-tensor output, but this model only produces a single output
     const argMaxImg = results[0];
     const segmentImg = nv1.cloneVolume(0)
