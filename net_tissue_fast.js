@@ -1,5 +1,5 @@
 
-const meshnet = (() => {
+const tissue_fast = (() => {
 const getTensorBuffer = (safetensorBuffer, tensorMetadata) => {
   return safetensorBuffer.subarray(...tensorMetadata.data_offsets);
 };
@@ -887,4 +887,4 @@ const getWeight = (safetensor, key) => {
 }
 return { load };
 })();
-export default meshnet;
+export default tissue_fast;
