@@ -49,7 +49,7 @@ const addComputePass = (device, commandEncoder, pipeline, layout, infinityUnifor
   passEncoder.end();
 };
 
-const r_10_256_32_4_8_16_3_4_3_3_3 = `enable f16;
+const r_7_256_32_4_8_16_3_4_3_3_3 = `enable f16;
 fn nan() -> f32 { let bits = 0xffffffffu; return bitcast<f32>(bits); }
 fn is_nan(v:f32) -> bool { return min(v, 1.0) == 1.0 && max(v, -1.0) == -1.0; }
 @group(0) @binding(0)
@@ -61,7 +61,7 @@ var<uniform> INFINITY : f32;
 @compute @workgroup_size(8,16) fn main(@builtin(workgroup_id) gindex: vec3<u32>,@builtin(local_invocation_id) lindex: vec3<u32>) {
   var gidx0 = i32(gindex.x); /* 128 */
   var gidx1 = i32(gindex.y); /* 256 */
-  var gidx2 = i32(gindex.z); /* 10 */
+  var gidx2 = i32(gindex.z); /* 7 */
   var lidx0 = i32(lindex.x); /* 8 */
   var lidx1 = i32(lindex.y); /* 16 */
   var alu0 = (gidx0>>2);
@@ -208,7 +208,7 @@ var<uniform> INFINITY : f32;
   data0[alu0] = (select(0,-1,((alu0<16)!=true))+select(0,-1,((alu0<17)!=true))+select(0,-1,((gidx0<5)!=true))+select(0,-1,((alu0<14)!=true))+select(0,-1,((alu0<13)!=true))+select(0,-1,((gidx0<4)!=true))+select(0,-1,((alu0<11)!=true))+select(0,-1,((alu0<10)!=true))+select(0,-1,((gidx0<3)!=true))+select(0,-1,((alu0<8)!=true))+select(0,-1,((alu0<7)!=true))+select(0,-1,((gidx0<2)!=true))+select(0,-1,((alu0<5)!=true))+select(0,-1,((alu0<4)!=true))+select(0,-1,((gidx0<1)!=true))+select(0,-1,((alu0<2)!=true))+select(0,-1,(((gidx0+lidx0)<1)!=true))+18);
 }`;
 
-const r_10_256_32_4_8_16_30_3_4_3_3_3 = `enable f16;
+const r_7_256_32_4_8_16_21_3_4_3_3_3 = `enable f16;
 fn nan() -> f32 { let bits = 0xffffffffu; return bitcast<f32>(bits); }
 fn is_nan(v:f32) -> bool { return min(v, 1.0) == 1.0 && max(v, -1.0) == -1.0; }
 @group(0) @binding(0)
@@ -220,7 +220,7 @@ var<uniform> INFINITY : f32;
 @compute @workgroup_size(8,16) fn main(@builtin(workgroup_id) gindex: vec3<u32>,@builtin(local_invocation_id) lindex: vec3<u32>) {
   var gidx0 = i32(gindex.x); /* 128 */
   var gidx1 = i32(gindex.y); /* 256 */
-  var gidx2 = i32(gindex.z); /* 10 */
+  var gidx2 = i32(gindex.z); /* 7 */
   var lidx0 = i32(lindex.x); /* 8 */
   var lidx1 = i32(lindex.y); /* 16 */
   var alu0 = (gidx0>>2);
@@ -248,13 +248,13 @@ var<uniform> INFINITY : f32;
   var acc9 = 0.0f;
   var acc10 = 0.0f;
   var acc11 = 0.0f;
-  for (var ridx0 = 0; ridx0 < 30; ridx0++) {
+  for (var ridx0 = 0; ridx0 < 21; ridx0++) {
     for (var ridx1 = 0; ridx1 < 3; ridx1++) {
       var alu13 = (gidx1+(ridx1<<1));
       var alu14 = ((alu13<258)&((alu13<2)!=true));
       var alu15 = (((alu8<2)!=true)&alu14);
       var alu16 = ((alu8<254)&alu14);
-      var alu17 = ((gidx2*2430)+(ridx0*27)+(ridx1*9));
+      var alu17 = ((gidx2*1701)+(ridx0*27)+(ridx1*9));
       var val0 = data2[alu17];
       var val1 = data2[(alu17+1)];
       var val2 = data2[(alu17+2)];
@@ -264,24 +264,24 @@ var<uniform> INFINITY : f32;
       var val6 = data2[(alu17+6)];
       var val7 = data2[(alu17+7)];
       var val8 = data2[(alu17+8)];
-      var val9 = data2[(alu17+810)];
-      var val10 = data2[(alu17+811)];
-      var val11 = data2[(alu17+812)];
-      var val12 = data2[(alu17+813)];
-      var val13 = data2[(alu17+814)];
-      var val14 = data2[(alu17+815)];
-      var val15 = data2[(alu17+816)];
-      var val16 = data2[(alu17+817)];
-      var val17 = data2[(alu17+818)];
-      var val18 = data2[(alu17+1620)];
-      var val19 = data2[(alu17+1621)];
-      var val20 = data2[(alu17+1622)];
-      var val21 = data2[(alu17+1623)];
-      var val22 = data2[(alu17+1624)];
-      var val23 = data2[(alu17+1625)];
-      var val24 = data2[(alu17+1626)];
-      var val25 = data2[(alu17+1627)];
-      var val26 = data2[(alu17+1628)];
+      var val9 = data2[(alu17+567)];
+      var val10 = data2[(alu17+568)];
+      var val11 = data2[(alu17+569)];
+      var val12 = data2[(alu17+570)];
+      var val13 = data2[(alu17+571)];
+      var val14 = data2[(alu17+572)];
+      var val15 = data2[(alu17+573)];
+      var val16 = data2[(alu17+574)];
+      var val17 = data2[(alu17+575)];
+      var val18 = data2[(alu17+1134)];
+      var val19 = data2[(alu17+1135)];
+      var val20 = data2[(alu17+1136)];
+      var val21 = data2[(alu17+1137)];
+      var val22 = data2[(alu17+1138)];
+      var val23 = data2[(alu17+1139)];
+      var val24 = data2[(alu17+1140)];
+      var val25 = data2[(alu17+1141)];
+      var val26 = data2[(alu17+1142)];
       var alu18 = (alu2+(ridx1<<17)+(ridx0<<24)+alu5+alu3+alu7);
       var val27 = select(0.0f, data1[(alu18+-131586)], (alu12&alu15));
       var val28 = select(0.0f, data1[(alu18+-131585)], (alu10&alu15));
@@ -364,7 +364,7 @@ var<uniform> INFINITY : f32;
   data0[(alu46+3)] = (select(0.0f,alu45,(0.0f<alu45))-select(0.0f,alu58,(0.0f<alu58)));
 }`;
 
-const r_10_256_32_4_8_16_30_3_4_3_3_3n1 = `enable f16;
+const r_7_256_32_4_8_16_21_3_4_3_3_3n1 = `enable f16;
 fn nan() -> f32 { let bits = 0xffffffffu; return bitcast<f32>(bits); }
 fn is_nan(v:f32) -> bool { return min(v, 1.0) == 1.0 && max(v, -1.0) == -1.0; }
 @group(0) @binding(0)
@@ -376,7 +376,7 @@ var<uniform> INFINITY : f32;
 @compute @workgroup_size(8,16) fn main(@builtin(workgroup_id) gindex: vec3<u32>,@builtin(local_invocation_id) lindex: vec3<u32>) {
   var gidx0 = i32(gindex.x); /* 128 */
   var gidx1 = i32(gindex.y); /* 256 */
-  var gidx2 = i32(gindex.z); /* 10 */
+  var gidx2 = i32(gindex.z); /* 7 */
   var lidx0 = i32(lindex.x); /* 8 */
   var lidx1 = i32(lindex.y); /* 16 */
   var alu0 = (gidx0>>2);
@@ -402,7 +402,7 @@ var<uniform> INFINITY : f32;
   var acc9 = 0.0f;
   var acc10 = 0.0f;
   var acc11 = 0.0f;
-  for (var ridx0 = 0; ridx0 < 30; ridx0++) {
+  for (var ridx0 = 0; ridx0 < 21; ridx0++) {
     for (var ridx1 = 0; ridx1 < 3; ridx1++) {
       var alu11 = (gidx1+(ridx1<<2));
       var alu12 = ((alu11<260)&((alu11<4)!=true));
@@ -414,7 +414,7 @@ var<uniform> INFINITY : f32;
       var alu18 = (alu10&alu12);
       var alu19 = (alu10&alu14);
       var alu20 = (alu10&alu13);
-      var alu21 = ((gidx2*2430)+(ridx0*27)+(ridx1*9));
+      var alu21 = ((gidx2*1701)+(ridx0*27)+(ridx1*9));
       var val0 = data2[alu21];
       var val1 = data2[(alu21+1)];
       var val2 = data2[(alu21+2)];
@@ -424,24 +424,24 @@ var<uniform> INFINITY : f32;
       var val6 = data2[(alu21+6)];
       var val7 = data2[(alu21+7)];
       var val8 = data2[(alu21+8)];
-      var val9 = data2[(alu21+810)];
-      var val10 = data2[(alu21+811)];
-      var val11 = data2[(alu21+812)];
-      var val12 = data2[(alu21+813)];
-      var val13 = data2[(alu21+814)];
-      var val14 = data2[(alu21+815)];
-      var val15 = data2[(alu21+816)];
-      var val16 = data2[(alu21+817)];
-      var val17 = data2[(alu21+818)];
-      var val18 = data2[(alu21+1620)];
-      var val19 = data2[(alu21+1621)];
-      var val20 = data2[(alu21+1622)];
-      var val21 = data2[(alu21+1623)];
-      var val22 = data2[(alu21+1624)];
-      var val23 = data2[(alu21+1625)];
-      var val24 = data2[(alu21+1626)];
-      var val25 = data2[(alu21+1627)];
-      var val26 = data2[(alu21+1628)];
+      var val9 = data2[(alu21+567)];
+      var val10 = data2[(alu21+568)];
+      var val11 = data2[(alu21+569)];
+      var val12 = data2[(alu21+570)];
+      var val13 = data2[(alu21+571)];
+      var val14 = data2[(alu21+572)];
+      var val15 = data2[(alu21+573)];
+      var val16 = data2[(alu21+574)];
+      var val17 = data2[(alu21+575)];
+      var val18 = data2[(alu21+1134)];
+      var val19 = data2[(alu21+1135)];
+      var val20 = data2[(alu21+1136)];
+      var val21 = data2[(alu21+1137)];
+      var val22 = data2[(alu21+1138)];
+      var val23 = data2[(alu21+1139)];
+      var val24 = data2[(alu21+1140)];
+      var val25 = data2[(alu21+1141)];
+      var val26 = data2[(alu21+1142)];
       var alu22 = (alu2+(ridx1<<18)+(ridx0<<24)+alu5+alu3+alu6+alu4);
       var val27 = select(0.0f, data1[(alu22+-263172)], alu20);
       var val28 = select(0.0f, data1[(alu22+-263171)], alu20);
@@ -536,7 +536,7 @@ var<uniform> INFINITY : f32;
   data0[(alu50+3)] = (select(0.0f,alu49,(0.0f<alu49))-select(0.0f,alu62,(0.0f<alu62)));
 }`;
 
-const r_10_256_32_4_8_16_30_3_4_3_3_3n2 = `enable f16;
+const r_7_256_32_4_8_16_21_3_4_3_3_3n2 = `enable f16;
 fn nan() -> f32 { let bits = 0xffffffffu; return bitcast<f32>(bits); }
 fn is_nan(v:f32) -> bool { return min(v, 1.0) == 1.0 && max(v, -1.0) == -1.0; }
 @group(0) @binding(0)
@@ -548,7 +548,7 @@ var<uniform> INFINITY : f32;
 @compute @workgroup_size(8,16) fn main(@builtin(workgroup_id) gindex: vec3<u32>,@builtin(local_invocation_id) lindex: vec3<u32>) {
   var gidx0 = i32(gindex.x); /* 128 */
   var gidx1 = i32(gindex.y); /* 256 */
-  var gidx2 = i32(gindex.z); /* 10 */
+  var gidx2 = i32(gindex.z); /* 7 */
   var lidx0 = i32(lindex.x); /* 8 */
   var lidx1 = i32(lindex.y); /* 16 */
   var alu0 = (gidx0&3);
@@ -572,7 +572,7 @@ var<uniform> INFINITY : f32;
   var acc9 = 0.0f;
   var acc10 = 0.0f;
   var acc11 = 0.0f;
-  for (var ridx0 = 0; ridx0 < 30; ridx0++) {
+  for (var ridx0 = 0; ridx0 < 21; ridx0++) {
     for (var ridx1 = 0; ridx1 < 3; ridx1++) {
       var alu9 = (gidx1+(ridx1<<3));
       var alu10 = ((alu9<264)&((alu9<8)!=true));
@@ -584,7 +584,7 @@ var<uniform> INFINITY : f32;
       var alu16 = (alu8&alu12);
       var alu17 = (alu8&alu10);
       var alu18 = (alu8&alu11);
-      var alu19 = ((gidx2*2430)+(ridx0*27)+(ridx1*9));
+      var alu19 = ((gidx2*1701)+(ridx0*27)+(ridx1*9));
       var val0 = data2[alu19];
       var val1 = data2[(alu19+1)];
       var val2 = data2[(alu19+2)];
@@ -594,24 +594,24 @@ var<uniform> INFINITY : f32;
       var val6 = data2[(alu19+6)];
       var val7 = data2[(alu19+7)];
       var val8 = data2[(alu19+8)];
-      var val9 = data2[(alu19+810)];
-      var val10 = data2[(alu19+811)];
-      var val11 = data2[(alu19+812)];
-      var val12 = data2[(alu19+813)];
-      var val13 = data2[(alu19+814)];
-      var val14 = data2[(alu19+815)];
-      var val15 = data2[(alu19+816)];
-      var val16 = data2[(alu19+817)];
-      var val17 = data2[(alu19+818)];
-      var val18 = data2[(alu19+1620)];
-      var val19 = data2[(alu19+1621)];
-      var val20 = data2[(alu19+1622)];
-      var val21 = data2[(alu19+1623)];
-      var val22 = data2[(alu19+1624)];
-      var val23 = data2[(alu19+1625)];
-      var val24 = data2[(alu19+1626)];
-      var val25 = data2[(alu19+1627)];
-      var val26 = data2[(alu19+1628)];
+      var val9 = data2[(alu19+567)];
+      var val10 = data2[(alu19+568)];
+      var val11 = data2[(alu19+569)];
+      var val12 = data2[(alu19+570)];
+      var val13 = data2[(alu19+571)];
+      var val14 = data2[(alu19+572)];
+      var val15 = data2[(alu19+573)];
+      var val16 = data2[(alu19+574)];
+      var val17 = data2[(alu19+575)];
+      var val18 = data2[(alu19+1134)];
+      var val19 = data2[(alu19+1135)];
+      var val20 = data2[(alu19+1136)];
+      var val21 = data2[(alu19+1137)];
+      var val22 = data2[(alu19+1138)];
+      var val23 = data2[(alu19+1139)];
+      var val24 = data2[(alu19+1140)];
+      var val25 = data2[(alu19+1141)];
+      var val26 = data2[(alu19+1142)];
       var alu20 = (alu1+(ridx1<<19)+(ridx0<<24)+alu4+alu2+alu5+alu3);
       var val27 = select(0.0f, data1[(alu20+-526344)], alu18);
       var val28 = select(0.0f, data1[(alu20+-526343)], alu18);
@@ -706,7 +706,7 @@ var<uniform> INFINITY : f32;
   data0[(alu48+3)] = (select(0.0f,alu47,(0.0f<alu47))-select(0.0f,alu60,(0.0f<alu60)));
 }`;
 
-const r_10_256_32_4_8_16_30_3_4_3_3_3n3 = `enable f16;
+const r_7_256_32_4_8_16_21_3_4_3_3_3n3 = `enable f16;
 fn nan() -> f32 { let bits = 0xffffffffu; return bitcast<f32>(bits); }
 fn is_nan(v:f32) -> bool { return min(v, 1.0) == 1.0 && max(v, -1.0) == -1.0; }
 @group(0) @binding(0)
@@ -718,7 +718,7 @@ var<uniform> INFINITY : f32;
 @compute @workgroup_size(8,16) fn main(@builtin(workgroup_id) gindex: vec3<u32>,@builtin(local_invocation_id) lindex: vec3<u32>) {
   var gidx0 = i32(gindex.x); /* 128 */
   var gidx1 = i32(gindex.y); /* 256 */
-  var gidx2 = i32(gindex.z); /* 10 */
+  var gidx2 = i32(gindex.z); /* 7 */
   var lidx0 = i32(lindex.x); /* 8 */
   var lidx1 = i32(lindex.y); /* 16 */
   var alu0 = (gidx0&3);
@@ -742,7 +742,7 @@ var<uniform> INFINITY : f32;
   var acc9 = 0.0f;
   var acc10 = 0.0f;
   var acc11 = 0.0f;
-  for (var ridx0 = 0; ridx0 < 30; ridx0++) {
+  for (var ridx0 = 0; ridx0 < 21; ridx0++) {
     for (var ridx1 = 0; ridx1 < 3; ridx1++) {
       var alu9 = (gidx1+(ridx1<<4));
       var alu10 = ((alu9<272)&((alu9<16)!=true));
@@ -754,7 +754,7 @@ var<uniform> INFINITY : f32;
       var alu16 = (alu8&alu12);
       var alu17 = (alu8&alu10);
       var alu18 = (alu8&alu11);
-      var alu19 = ((gidx2*2430)+(ridx0*27)+(ridx1*9));
+      var alu19 = ((gidx2*1701)+(ridx0*27)+(ridx1*9));
       var val0 = data2[alu19];
       var val1 = data2[(alu19+1)];
       var val2 = data2[(alu19+2)];
@@ -764,24 +764,24 @@ var<uniform> INFINITY : f32;
       var val6 = data2[(alu19+6)];
       var val7 = data2[(alu19+7)];
       var val8 = data2[(alu19+8)];
-      var val9 = data2[(alu19+810)];
-      var val10 = data2[(alu19+811)];
-      var val11 = data2[(alu19+812)];
-      var val12 = data2[(alu19+813)];
-      var val13 = data2[(alu19+814)];
-      var val14 = data2[(alu19+815)];
-      var val15 = data2[(alu19+816)];
-      var val16 = data2[(alu19+817)];
-      var val17 = data2[(alu19+818)];
-      var val18 = data2[(alu19+1620)];
-      var val19 = data2[(alu19+1621)];
-      var val20 = data2[(alu19+1622)];
-      var val21 = data2[(alu19+1623)];
-      var val22 = data2[(alu19+1624)];
-      var val23 = data2[(alu19+1625)];
-      var val24 = data2[(alu19+1626)];
-      var val25 = data2[(alu19+1627)];
-      var val26 = data2[(alu19+1628)];
+      var val9 = data2[(alu19+567)];
+      var val10 = data2[(alu19+568)];
+      var val11 = data2[(alu19+569)];
+      var val12 = data2[(alu19+570)];
+      var val13 = data2[(alu19+571)];
+      var val14 = data2[(alu19+572)];
+      var val15 = data2[(alu19+573)];
+      var val16 = data2[(alu19+574)];
+      var val17 = data2[(alu19+575)];
+      var val18 = data2[(alu19+1134)];
+      var val19 = data2[(alu19+1135)];
+      var val20 = data2[(alu19+1136)];
+      var val21 = data2[(alu19+1137)];
+      var val22 = data2[(alu19+1138)];
+      var val23 = data2[(alu19+1139)];
+      var val24 = data2[(alu19+1140)];
+      var val25 = data2[(alu19+1141)];
+      var val26 = data2[(alu19+1142)];
       var alu20 = (alu1+(ridx1<<20)+(ridx0<<24)+alu4+alu2+alu5+alu3);
       var val27 = select(0.0f, data1[(alu20+-1052688)], alu18);
       var val28 = select(0.0f, data1[(alu20+-1052687)], alu18);
@@ -876,7 +876,7 @@ var<uniform> INFINITY : f32;
   data0[(alu48+3)] = (select(0.0f,alu47,(0.0f<alu47))-select(0.0f,alu60,(0.0f<alu60)));
 }`;
 
-const r_10_256_32_4_8_16_30_3_4_3_3_3n4 = `enable f16;
+const r_7_256_32_4_8_16_21_3_4_3_3_3n4 = `enable f16;
 fn nan() -> f32 { let bits = 0xffffffffu; return bitcast<f32>(bits); }
 fn is_nan(v:f32) -> bool { return min(v, 1.0) == 1.0 && max(v, -1.0) == -1.0; }
 @group(0) @binding(0)
@@ -888,7 +888,7 @@ var<uniform> INFINITY : f32;
 @compute @workgroup_size(8,16) fn main(@builtin(workgroup_id) gindex: vec3<u32>,@builtin(local_invocation_id) lindex: vec3<u32>) {
   var gidx0 = i32(gindex.x); /* 128 */
   var gidx1 = i32(gindex.y); /* 256 */
-  var gidx2 = i32(gindex.z); /* 10 */
+  var gidx2 = i32(gindex.z); /* 7 */
   var lidx0 = i32(lindex.x); /* 8 */
   var lidx1 = i32(lindex.y); /* 16 */
   var alu0 = (gidx0>>2);
@@ -914,13 +914,13 @@ var<uniform> INFINITY : f32;
   var acc9 = 0.0f;
   var acc10 = 0.0f;
   var acc11 = 0.0f;
-  for (var ridx0 = 0; ridx0 < 30; ridx0++) {
+  for (var ridx0 = 0; ridx0 < 21; ridx0++) {
     for (var ridx1 = 0; ridx1 < 3; ridx1++) {
       var alu11 = (gidx1+ridx1);
       var alu12 = ((alu11<257)&((alu11<1)!=true));
       var alu13 = (((alu8<1)!=true)&alu12);
       var alu14 = ((alu8<255)&alu12);
-      var alu15 = ((gidx2*2430)+(ridx0*27)+(ridx1*9));
+      var alu15 = ((gidx2*1701)+(ridx0*27)+(ridx1*9));
       var val0 = data2[alu15];
       var val1 = data2[(alu15+1)];
       var val2 = data2[(alu15+2)];
@@ -930,24 +930,24 @@ var<uniform> INFINITY : f32;
       var val6 = data2[(alu15+6)];
       var val7 = data2[(alu15+7)];
       var val8 = data2[(alu15+8)];
-      var val9 = data2[(alu15+810)];
-      var val10 = data2[(alu15+811)];
-      var val11 = data2[(alu15+812)];
-      var val12 = data2[(alu15+813)];
-      var val13 = data2[(alu15+814)];
-      var val14 = data2[(alu15+815)];
-      var val15 = data2[(alu15+816)];
-      var val16 = data2[(alu15+817)];
-      var val17 = data2[(alu15+818)];
-      var val18 = data2[(alu15+1620)];
-      var val19 = data2[(alu15+1621)];
-      var val20 = data2[(alu15+1622)];
-      var val21 = data2[(alu15+1623)];
-      var val22 = data2[(alu15+1624)];
-      var val23 = data2[(alu15+1625)];
-      var val24 = data2[(alu15+1626)];
-      var val25 = data2[(alu15+1627)];
-      var val26 = data2[(alu15+1628)];
+      var val9 = data2[(alu15+567)];
+      var val10 = data2[(alu15+568)];
+      var val11 = data2[(alu15+569)];
+      var val12 = data2[(alu15+570)];
+      var val13 = data2[(alu15+571)];
+      var val14 = data2[(alu15+572)];
+      var val15 = data2[(alu15+573)];
+      var val16 = data2[(alu15+574)];
+      var val17 = data2[(alu15+575)];
+      var val18 = data2[(alu15+1134)];
+      var val19 = data2[(alu15+1135)];
+      var val20 = data2[(alu15+1136)];
+      var val21 = data2[(alu15+1137)];
+      var val22 = data2[(alu15+1138)];
+      var val23 = data2[(alu15+1139)];
+      var val24 = data2[(alu15+1140)];
+      var val25 = data2[(alu15+1141)];
+      var val26 = data2[(alu15+1142)];
       var alu16 = (alu2+(ridx1<<16)+(ridx0<<24)+alu5+alu3+alu7);
       var val27 = select(0.0f, data1[(alu16+-65793)], (alu9&alu13));
       var val28 = select(0.0f, data1[(alu16+-65792)], alu13);
@@ -1024,7 +1024,7 @@ var<uniform> INFINITY : f32;
   data0[(alu44+3)] = (select(0.0f,alu43,(0.0f<alu43))-select(0.0f,alu56,(0.0f<alu56)));
 }`;
 
-const r_2_32768_8_3_16_4_3_30 = `enable f16;
+const r_2_32768_8_3_16_4_3_21 = `enable f16;
 fn nan() -> f32 { let bits = 0xffffffffu; return bitcast<f32>(bits); }
 fn is_nan(v:f32) -> bool { return min(v, 1.0) == 1.0 && max(v, -1.0) == -1.0; }
 @group(0) @binding(0)
@@ -1043,7 +1043,7 @@ var<uniform> INFINITY : f32;
   var val0 = data3[alu0];
   var val1 = data3[(alu0+1)];
   var val2 = data3[(alu0+2)];
-  var alu1 = ((gidx2*270)+(lidx0*90));
+  var alu1 = ((gidx2*189)+(lidx0*63));
   var val3 = data2[alu1];
   var val4 = data2[(alu1+1)];
   var val5 = data2[(alu1+2)];
@@ -1107,170 +1107,107 @@ var<uniform> INFINITY : f32;
   var val63 = data2[(alu1+60)];
   var val64 = data2[(alu1+61)];
   var val65 = data2[(alu1+62)];
-  var val66 = data2[(alu1+63)];
-  var val67 = data2[(alu1+64)];
-  var val68 = data2[(alu1+65)];
-  var val69 = data2[(alu1+66)];
-  var val70 = data2[(alu1+67)];
-  var val71 = data2[(alu1+68)];
-  var val72 = data2[(alu1+69)];
-  var val73 = data2[(alu1+70)];
-  var val74 = data2[(alu1+71)];
-  var val75 = data2[(alu1+72)];
-  var val76 = data2[(alu1+73)];
-  var val77 = data2[(alu1+74)];
-  var val78 = data2[(alu1+75)];
-  var val79 = data2[(alu1+76)];
-  var val80 = data2[(alu1+77)];
-  var val81 = data2[(alu1+78)];
-  var val82 = data2[(alu1+79)];
-  var val83 = data2[(alu1+80)];
-  var val84 = data2[(alu1+81)];
-  var val85 = data2[(alu1+82)];
-  var val86 = data2[(alu1+83)];
-  var val87 = data2[(alu1+84)];
-  var val88 = data2[(alu1+85)];
-  var val89 = data2[(alu1+86)];
-  var val90 = data2[(alu1+87)];
-  var val91 = data2[(alu1+88)];
-  var val92 = data2[(alu1+89)];
   var alu2 = (gidx0<<6);
   var alu3 = (gidx1<<9);
   var alu4 = (lidx1<<2);
   var alu5 = (alu2+alu3+alu4);
-  var val93 = data1[alu5];
-  var val94 = data1[(alu5+1)];
-  var val95 = data1[(alu5+2)];
-  var val96 = data1[(alu5+3)];
-  var val97 = data1[(alu5+16777216)];
-  var val98 = data1[(alu5+16777217)];
-  var val99 = data1[(alu5+16777218)];
-  var val100 = data1[(alu5+16777219)];
-  var val101 = data1[(alu5+33554432)];
-  var val102 = data1[(alu5+33554433)];
-  var val103 = data1[(alu5+33554434)];
-  var val104 = data1[(alu5+33554435)];
-  var val105 = data1[(alu5+50331648)];
-  var val106 = data1[(alu5+50331649)];
-  var val107 = data1[(alu5+50331650)];
-  var val108 = data1[(alu5+50331651)];
-  var val109 = data1[(alu5+67108864)];
-  var val110 = data1[(alu5+67108865)];
-  var val111 = data1[(alu5+67108866)];
-  var val112 = data1[(alu5+67108867)];
-  var val113 = data1[(alu5+83886080)];
-  var val114 = data1[(alu5+83886081)];
-  var val115 = data1[(alu5+83886082)];
-  var val116 = data1[(alu5+83886083)];
-  var val117 = data1[(alu5+100663296)];
-  var val118 = data1[(alu5+100663297)];
-  var val119 = data1[(alu5+100663298)];
-  var val120 = data1[(alu5+100663299)];
-  var val121 = data1[(alu5+117440512)];
-  var val122 = data1[(alu5+117440513)];
-  var val123 = data1[(alu5+117440514)];
-  var val124 = data1[(alu5+117440515)];
-  var val125 = data1[(alu5+134217728)];
-  var val126 = data1[(alu5+134217729)];
-  var val127 = data1[(alu5+134217730)];
-  var val128 = data1[(alu5+134217731)];
-  var val129 = data1[(alu5+150994944)];
-  var val130 = data1[(alu5+150994945)];
-  var val131 = data1[(alu5+150994946)];
-  var val132 = data1[(alu5+150994947)];
-  var val133 = data1[(alu5+167772160)];
-  var val134 = data1[(alu5+167772161)];
-  var val135 = data1[(alu5+167772162)];
-  var val136 = data1[(alu5+167772163)];
-  var val137 = data1[(alu5+184549376)];
-  var val138 = data1[(alu5+184549377)];
-  var val139 = data1[(alu5+184549378)];
-  var val140 = data1[(alu5+184549379)];
-  var val141 = data1[(alu5+201326592)];
-  var val142 = data1[(alu5+201326593)];
-  var val143 = data1[(alu5+201326594)];
-  var val144 = data1[(alu5+201326595)];
-  var val145 = data1[(alu5+218103808)];
-  var val146 = data1[(alu5+218103809)];
-  var val147 = data1[(alu5+218103810)];
-  var val148 = data1[(alu5+218103811)];
-  var val149 = data1[(alu5+234881024)];
-  var val150 = data1[(alu5+234881025)];
-  var val151 = data1[(alu5+234881026)];
-  var val152 = data1[(alu5+234881027)];
-  var val153 = data1[(alu5+251658240)];
-  var val154 = data1[(alu5+251658241)];
-  var val155 = data1[(alu5+251658242)];
-  var val156 = data1[(alu5+251658243)];
-  var val157 = data1[(alu5+268435456)];
-  var val158 = data1[(alu5+268435457)];
-  var val159 = data1[(alu5+268435458)];
-  var val160 = data1[(alu5+268435459)];
-  var val161 = data1[(alu5+285212672)];
-  var val162 = data1[(alu5+285212673)];
-  var val163 = data1[(alu5+285212674)];
-  var val164 = data1[(alu5+285212675)];
-  var val165 = data1[(alu5+301989888)];
-  var val166 = data1[(alu5+301989889)];
-  var val167 = data1[(alu5+301989890)];
-  var val168 = data1[(alu5+301989891)];
-  var val169 = data1[(alu5+318767104)];
-  var val170 = data1[(alu5+318767105)];
-  var val171 = data1[(alu5+318767106)];
-  var val172 = data1[(alu5+318767107)];
-  var val173 = data1[(alu5+335544320)];
-  var val174 = data1[(alu5+335544321)];
-  var val175 = data1[(alu5+335544322)];
-  var val176 = data1[(alu5+335544323)];
-  var val177 = data1[(alu5+352321536)];
-  var val178 = data1[(alu5+352321537)];
-  var val179 = data1[(alu5+352321538)];
-  var val180 = data1[(alu5+352321539)];
-  var val181 = data1[(alu5+369098752)];
-  var val182 = data1[(alu5+369098753)];
-  var val183 = data1[(alu5+369098754)];
-  var val184 = data1[(alu5+369098755)];
-  var val185 = data1[(alu5+385875968)];
-  var val186 = data1[(alu5+385875969)];
-  var val187 = data1[(alu5+385875970)];
-  var val188 = data1[(alu5+385875971)];
-  var val189 = data1[(alu5+402653184)];
-  var val190 = data1[(alu5+402653185)];
-  var val191 = data1[(alu5+402653186)];
-  var val192 = data1[(alu5+402653187)];
-  var val193 = data1[(alu5+419430400)];
-  var val194 = data1[(alu5+419430401)];
-  var val195 = data1[(alu5+419430402)];
-  var val196 = data1[(alu5+419430403)];
-  var val197 = data1[(alu5+436207616)];
-  var val198 = data1[(alu5+436207617)];
-  var val199 = data1[(alu5+436207618)];
-  var val200 = data1[(alu5+436207619)];
-  var val201 = data1[(alu5+452984832)];
-  var val202 = data1[(alu5+452984833)];
-  var val203 = data1[(alu5+452984834)];
-  var val204 = data1[(alu5+452984835)];
-  var val205 = data1[(alu5+469762048)];
-  var val206 = data1[(alu5+469762049)];
-  var val207 = data1[(alu5+469762050)];
-  var val208 = data1[(alu5+469762051)];
-  var val209 = data1[(alu5+486539264)];
-  var val210 = data1[(alu5+486539265)];
-  var val211 = data1[(alu5+486539266)];
-  var val212 = data1[(alu5+486539267)];
+  var val66 = data1[alu5];
+  var val67 = data1[(alu5+1)];
+  var val68 = data1[(alu5+2)];
+  var val69 = data1[(alu5+3)];
+  var val70 = data1[(alu5+16777216)];
+  var val71 = data1[(alu5+16777217)];
+  var val72 = data1[(alu5+16777218)];
+  var val73 = data1[(alu5+16777219)];
+  var val74 = data1[(alu5+33554432)];
+  var val75 = data1[(alu5+33554433)];
+  var val76 = data1[(alu5+33554434)];
+  var val77 = data1[(alu5+33554435)];
+  var val78 = data1[(alu5+50331648)];
+  var val79 = data1[(alu5+50331649)];
+  var val80 = data1[(alu5+50331650)];
+  var val81 = data1[(alu5+50331651)];
+  var val82 = data1[(alu5+67108864)];
+  var val83 = data1[(alu5+67108865)];
+  var val84 = data1[(alu5+67108866)];
+  var val85 = data1[(alu5+67108867)];
+  var val86 = data1[(alu5+83886080)];
+  var val87 = data1[(alu5+83886081)];
+  var val88 = data1[(alu5+83886082)];
+  var val89 = data1[(alu5+83886083)];
+  var val90 = data1[(alu5+100663296)];
+  var val91 = data1[(alu5+100663297)];
+  var val92 = data1[(alu5+100663298)];
+  var val93 = data1[(alu5+100663299)];
+  var val94 = data1[(alu5+117440512)];
+  var val95 = data1[(alu5+117440513)];
+  var val96 = data1[(alu5+117440514)];
+  var val97 = data1[(alu5+117440515)];
+  var val98 = data1[(alu5+134217728)];
+  var val99 = data1[(alu5+134217729)];
+  var val100 = data1[(alu5+134217730)];
+  var val101 = data1[(alu5+134217731)];
+  var val102 = data1[(alu5+150994944)];
+  var val103 = data1[(alu5+150994945)];
+  var val104 = data1[(alu5+150994946)];
+  var val105 = data1[(alu5+150994947)];
+  var val106 = data1[(alu5+167772160)];
+  var val107 = data1[(alu5+167772161)];
+  var val108 = data1[(alu5+167772162)];
+  var val109 = data1[(alu5+167772163)];
+  var val110 = data1[(alu5+184549376)];
+  var val111 = data1[(alu5+184549377)];
+  var val112 = data1[(alu5+184549378)];
+  var val113 = data1[(alu5+184549379)];
+  var val114 = data1[(alu5+201326592)];
+  var val115 = data1[(alu5+201326593)];
+  var val116 = data1[(alu5+201326594)];
+  var val117 = data1[(alu5+201326595)];
+  var val118 = data1[(alu5+218103808)];
+  var val119 = data1[(alu5+218103809)];
+  var val120 = data1[(alu5+218103810)];
+  var val121 = data1[(alu5+218103811)];
+  var val122 = data1[(alu5+234881024)];
+  var val123 = data1[(alu5+234881025)];
+  var val124 = data1[(alu5+234881026)];
+  var val125 = data1[(alu5+234881027)];
+  var val126 = data1[(alu5+251658240)];
+  var val127 = data1[(alu5+251658241)];
+  var val128 = data1[(alu5+251658242)];
+  var val129 = data1[(alu5+251658243)];
+  var val130 = data1[(alu5+268435456)];
+  var val131 = data1[(alu5+268435457)];
+  var val132 = data1[(alu5+268435458)];
+  var val133 = data1[(alu5+268435459)];
+  var val134 = data1[(alu5+285212672)];
+  var val135 = data1[(alu5+285212673)];
+  var val136 = data1[(alu5+285212674)];
+  var val137 = data1[(alu5+285212675)];
+  var val138 = data1[(alu5+301989888)];
+  var val139 = data1[(alu5+301989889)];
+  var val140 = data1[(alu5+301989890)];
+  var val141 = data1[(alu5+301989891)];
+  var val142 = data1[(alu5+318767104)];
+  var val143 = data1[(alu5+318767105)];
+  var val144 = data1[(alu5+318767106)];
+  var val145 = data1[(alu5+318767107)];
+  var val146 = data1[(alu5+335544320)];
+  var val147 = data1[(alu5+335544321)];
+  var val148 = data1[(alu5+335544322)];
+  var val149 = data1[(alu5+335544323)];
   var alu6 = (alu3+(gidx2*150994944)+alu2+(lidx0*50331648)+alu4);
-  data0[(alu6+1)] = (val0+(val94*val3)+(val98*val4)+(val102*val5)+(val106*val6)+(val110*val7)+(val114*val8)+(val118*val9)+(val122*val10)+(val126*val11)+(val130*val12)+(val134*val13)+(val138*val14)+(val142*val15)+(val146*val16)+(val150*val17)+(val154*val18)+(val158*val19)+(val162*val20)+(val166*val21)+(val170*val22)+(val174*val23)+(val178*val24)+(val182*val25)+(val186*val26)+(val190*val27)+(val194*val28)+(val198*val29)+(val202*val30)+(val206*val31)+(val210*val32));
-  data0[(alu6+16777217)] = (val1+(val94*val33)+(val98*val34)+(val102*val35)+(val106*val36)+(val110*val37)+(val114*val38)+(val118*val39)+(val122*val40)+(val126*val41)+(val130*val42)+(val134*val43)+(val138*val44)+(val142*val45)+(val146*val46)+(val150*val47)+(val154*val48)+(val158*val49)+(val162*val50)+(val166*val51)+(val170*val52)+(val174*val53)+(val178*val54)+(val182*val55)+(val186*val56)+(val190*val57)+(val194*val58)+(val198*val59)+(val202*val60)+(val206*val61)+(val210*val62));
-  data0[(alu6+33554433)] = (val2+(val94*val63)+(val98*val64)+(val102*val65)+(val106*val66)+(val110*val67)+(val114*val68)+(val118*val69)+(val122*val70)+(val126*val71)+(val130*val72)+(val134*val73)+(val138*val74)+(val142*val75)+(val146*val76)+(val150*val77)+(val154*val78)+(val158*val79)+(val162*val80)+(val166*val81)+(val170*val82)+(val174*val83)+(val178*val84)+(val182*val85)+(val186*val86)+(val190*val87)+(val194*val88)+(val198*val89)+(val202*val90)+(val206*val91)+(val210*val92));
-  data0[(alu6+2)] = (val0+(val95*val3)+(val99*val4)+(val103*val5)+(val107*val6)+(val111*val7)+(val115*val8)+(val119*val9)+(val123*val10)+(val127*val11)+(val131*val12)+(val135*val13)+(val139*val14)+(val143*val15)+(val147*val16)+(val151*val17)+(val155*val18)+(val159*val19)+(val163*val20)+(val167*val21)+(val171*val22)+(val175*val23)+(val179*val24)+(val183*val25)+(val187*val26)+(val191*val27)+(val195*val28)+(val199*val29)+(val203*val30)+(val207*val31)+(val211*val32));
-  data0[(alu6+16777218)] = (val1+(val95*val33)+(val99*val34)+(val103*val35)+(val107*val36)+(val111*val37)+(val115*val38)+(val119*val39)+(val123*val40)+(val127*val41)+(val131*val42)+(val135*val43)+(val139*val44)+(val143*val45)+(val147*val46)+(val151*val47)+(val155*val48)+(val159*val49)+(val163*val50)+(val167*val51)+(val171*val52)+(val175*val53)+(val179*val54)+(val183*val55)+(val187*val56)+(val191*val57)+(val195*val58)+(val199*val59)+(val203*val60)+(val207*val61)+(val211*val62));
-  data0[(alu6+33554434)] = (val2+(val95*val63)+(val99*val64)+(val103*val65)+(val107*val66)+(val111*val67)+(val115*val68)+(val119*val69)+(val123*val70)+(val127*val71)+(val131*val72)+(val135*val73)+(val139*val74)+(val143*val75)+(val147*val76)+(val151*val77)+(val155*val78)+(val159*val79)+(val163*val80)+(val167*val81)+(val171*val82)+(val175*val83)+(val179*val84)+(val183*val85)+(val187*val86)+(val191*val87)+(val195*val88)+(val199*val89)+(val203*val90)+(val207*val91)+(val211*val92));
-  data0[(alu6+3)] = (val0+(val96*val3)+(val100*val4)+(val104*val5)+(val108*val6)+(val112*val7)+(val116*val8)+(val120*val9)+(val124*val10)+(val128*val11)+(val132*val12)+(val136*val13)+(val140*val14)+(val144*val15)+(val148*val16)+(val152*val17)+(val156*val18)+(val160*val19)+(val164*val20)+(val168*val21)+(val172*val22)+(val176*val23)+(val180*val24)+(val184*val25)+(val188*val26)+(val192*val27)+(val196*val28)+(val200*val29)+(val204*val30)+(val208*val31)+(val212*val32));
-  data0[(alu6+16777219)] = (val1+(val96*val33)+(val100*val34)+(val104*val35)+(val108*val36)+(val112*val37)+(val116*val38)+(val120*val39)+(val124*val40)+(val128*val41)+(val132*val42)+(val136*val43)+(val140*val44)+(val144*val45)+(val148*val46)+(val152*val47)+(val156*val48)+(val160*val49)+(val164*val50)+(val168*val51)+(val172*val52)+(val176*val53)+(val180*val54)+(val184*val55)+(val188*val56)+(val192*val57)+(val196*val58)+(val200*val59)+(val204*val60)+(val208*val61)+(val212*val62));
-  data0[(alu6+33554435)] = (val2+(val96*val63)+(val100*val64)+(val104*val65)+(val108*val66)+(val112*val67)+(val116*val68)+(val120*val69)+(val124*val70)+(val128*val71)+(val132*val72)+(val136*val73)+(val140*val74)+(val144*val75)+(val148*val76)+(val152*val77)+(val156*val78)+(val160*val79)+(val164*val80)+(val168*val81)+(val172*val82)+(val176*val83)+(val180*val84)+(val184*val85)+(val188*val86)+(val192*val87)+(val196*val88)+(val200*val89)+(val204*val90)+(val208*val91)+(val212*val92));
-  data0[(alu6+16777216)] = (val1+(val97*val34)+(val93*val33)+(val101*val35)+(val105*val36)+(val109*val37)+(val113*val38)+(val117*val39)+(val121*val40)+(val125*val41)+(val129*val42)+(val133*val43)+(val137*val44)+(val141*val45)+(val145*val46)+(val149*val47)+(val153*val48)+(val157*val49)+(val161*val50)+(val165*val51)+(val169*val52)+(val173*val53)+(val177*val54)+(val181*val55)+(val185*val56)+(val189*val57)+(val193*val58)+(val197*val59)+(val201*val60)+(val205*val61)+(val209*val62));
-  data0[(alu6+33554432)] = (val2+(val97*val64)+(val93*val63)+(val101*val65)+(val105*val66)+(val109*val67)+(val113*val68)+(val117*val69)+(val121*val70)+(val125*val71)+(val129*val72)+(val133*val73)+(val137*val74)+(val141*val75)+(val145*val76)+(val149*val77)+(val153*val78)+(val157*val79)+(val161*val80)+(val165*val81)+(val169*val82)+(val173*val83)+(val177*val84)+(val181*val85)+(val185*val86)+(val189*val87)+(val193*val88)+(val197*val89)+(val201*val90)+(val205*val91)+(val209*val92));
-  data0[alu6] = (val0+(val97*val4)+(val93*val3)+(val101*val5)+(val105*val6)+(val109*val7)+(val113*val8)+(val117*val9)+(val121*val10)+(val125*val11)+(val129*val12)+(val133*val13)+(val137*val14)+(val141*val15)+(val145*val16)+(val149*val17)+(val153*val18)+(val157*val19)+(val161*val20)+(val165*val21)+(val169*val22)+(val173*val23)+(val177*val24)+(val181*val25)+(val185*val26)+(val189*val27)+(val193*val28)+(val197*val29)+(val201*val30)+(val205*val31)+(val209*val32));
+  data0[(alu6+1)] = (val0+(val67*val3)+(val71*val4)+(val75*val5)+(val79*val6)+(val83*val7)+(val87*val8)+(val91*val9)+(val95*val10)+(val99*val11)+(val103*val12)+(val107*val13)+(val111*val14)+(val115*val15)+(val119*val16)+(val123*val17)+(val127*val18)+(val131*val19)+(val135*val20)+(val139*val21)+(val143*val22)+(val147*val23));
+  data0[(alu6+16777217)] = (val1+(val67*val24)+(val71*val25)+(val75*val26)+(val79*val27)+(val83*val28)+(val87*val29)+(val91*val30)+(val95*val31)+(val99*val32)+(val103*val33)+(val107*val34)+(val111*val35)+(val115*val36)+(val119*val37)+(val123*val38)+(val127*val39)+(val131*val40)+(val135*val41)+(val139*val42)+(val143*val43)+(val147*val44));
+  data0[(alu6+33554433)] = (val2+(val67*val45)+(val71*val46)+(val75*val47)+(val79*val48)+(val83*val49)+(val87*val50)+(val91*val51)+(val95*val52)+(val99*val53)+(val103*val54)+(val107*val55)+(val111*val56)+(val115*val57)+(val119*val58)+(val123*val59)+(val127*val60)+(val131*val61)+(val135*val62)+(val139*val63)+(val143*val64)+(val147*val65));
+  data0[(alu6+2)] = (val0+(val68*val3)+(val72*val4)+(val76*val5)+(val80*val6)+(val84*val7)+(val88*val8)+(val92*val9)+(val96*val10)+(val100*val11)+(val104*val12)+(val108*val13)+(val112*val14)+(val116*val15)+(val120*val16)+(val124*val17)+(val128*val18)+(val132*val19)+(val136*val20)+(val140*val21)+(val144*val22)+(val148*val23));
+  data0[(alu6+16777218)] = (val1+(val68*val24)+(val72*val25)+(val76*val26)+(val80*val27)+(val84*val28)+(val88*val29)+(val92*val30)+(val96*val31)+(val100*val32)+(val104*val33)+(val108*val34)+(val112*val35)+(val116*val36)+(val120*val37)+(val124*val38)+(val128*val39)+(val132*val40)+(val136*val41)+(val140*val42)+(val144*val43)+(val148*val44));
+  data0[(alu6+33554434)] = (val2+(val68*val45)+(val72*val46)+(val76*val47)+(val80*val48)+(val84*val49)+(val88*val50)+(val92*val51)+(val96*val52)+(val100*val53)+(val104*val54)+(val108*val55)+(val112*val56)+(val116*val57)+(val120*val58)+(val124*val59)+(val128*val60)+(val132*val61)+(val136*val62)+(val140*val63)+(val144*val64)+(val148*val65));
+  data0[(alu6+3)] = (val0+(val69*val3)+(val73*val4)+(val77*val5)+(val81*val6)+(val85*val7)+(val89*val8)+(val93*val9)+(val97*val10)+(val101*val11)+(val105*val12)+(val109*val13)+(val113*val14)+(val117*val15)+(val121*val16)+(val125*val17)+(val129*val18)+(val133*val19)+(val137*val20)+(val141*val21)+(val145*val22)+(val149*val23));
+  data0[(alu6+16777219)] = (val1+(val69*val24)+(val73*val25)+(val77*val26)+(val81*val27)+(val85*val28)+(val89*val29)+(val93*val30)+(val97*val31)+(val101*val32)+(val105*val33)+(val109*val34)+(val113*val35)+(val117*val36)+(val121*val37)+(val125*val38)+(val129*val39)+(val133*val40)+(val137*val41)+(val141*val42)+(val145*val43)+(val149*val44));
+  data0[(alu6+33554435)] = (val2+(val69*val45)+(val73*val46)+(val77*val47)+(val81*val48)+(val85*val49)+(val89*val50)+(val93*val51)+(val97*val52)+(val101*val53)+(val105*val54)+(val109*val55)+(val113*val56)+(val117*val57)+(val121*val58)+(val125*val59)+(val129*val60)+(val133*val61)+(val137*val62)+(val141*val63)+(val145*val64)+(val149*val65));
+  data0[(alu6+16777216)] = (val1+(val70*val25)+(val66*val24)+(val74*val26)+(val78*val27)+(val82*val28)+(val86*val29)+(val90*val30)+(val94*val31)+(val98*val32)+(val102*val33)+(val106*val34)+(val110*val35)+(val114*val36)+(val118*val37)+(val122*val38)+(val126*val39)+(val130*val40)+(val134*val41)+(val138*val42)+(val142*val43)+(val146*val44));
+  data0[(alu6+33554432)] = (val2+(val70*val46)+(val66*val45)+(val74*val47)+(val78*val48)+(val82*val49)+(val86*val50)+(val90*val51)+(val94*val52)+(val98*val53)+(val102*val54)+(val106*val55)+(val110*val56)+(val114*val57)+(val118*val58)+(val122*val59)+(val126*val60)+(val130*val61)+(val134*val62)+(val138*val63)+(val142*val64)+(val146*val65));
+  data0[alu6] = (val0+(val70*val4)+(val66*val3)+(val74*val5)+(val78*val6)+(val82*val7)+(val86*val8)+(val90*val9)+(val94*val10)+(val98*val11)+(val102*val12)+(val106*val13)+(val110*val14)+(val114*val15)+(val118*val16)+(val122*val17)+(val126*val18)+(val130*val19)+(val134*val20)+(val138*val21)+(val142*val22)+(val146*val23));
 }`;
 
 const r_32768_16_1_32_18 = `enable f16;
@@ -1581,30 +1518,30 @@ const setupNet = async (device, safetensor) => {
 
     const layouts=[device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 3, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 4, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 3, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 4, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 3, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 4, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 3, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 4, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 3, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 4, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 3, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 4, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 3, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 4, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 3, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 4, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 3, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 4, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 3, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 4, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]}),device.createBindGroupLayout({entries: [{binding: 0, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'uniform' }}, {binding: 1, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 2, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 3, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } },{binding: 4, visibility: GPUShaderStage.COMPUTE, buffer: { type: 'storage' } }]})]
 
-    const buf_0 = createEmptyBuf(device, 2013265920);;
+    const buf_0 = createEmptyBuf(device, 1409286144);;
     const input0 = createEmptyBuf(device, 67108864);;
-    const buf_1 = createWeightBuf(device, 3240, getTensorBuffer(safetensor, metadata['convs.0.weight']));
-    const buf_2 = createWeightBuf(device, 120, getTensorBuffer(safetensor, metadata['convs.0.bias']));
+    const buf_1 = createWeightBuf(device, 2268, getTensorBuffer(safetensor, metadata['convs.0.weight']));
+    const buf_2 = createWeightBuf(device, 84, getTensorBuffer(safetensor, metadata['convs.0.bias']));
     const buf_3 = createEmptyBuf(device, 72);;
-    const buf_4 = createEmptyBuf(device, 2013265920);;
-    const buf_5 = createWeightBuf(device, 97200, getTensorBuffer(safetensor, metadata['convs.1.weight']));
-    const buf_6 = createWeightBuf(device, 120, getTensorBuffer(safetensor, metadata['convs.1.bias']));
-    const buf_7 = createWeightBuf(device, 97200, getTensorBuffer(safetensor, metadata['convs.2.weight']));
-    const buf_8 = createWeightBuf(device, 120, getTensorBuffer(safetensor, metadata['convs.2.bias']));
-    const buf_9 = createWeightBuf(device, 97200, getTensorBuffer(safetensor, metadata['convs.3.weight']));
-    const buf_10 = createWeightBuf(device, 120, getTensorBuffer(safetensor, metadata['convs.3.bias']));
-    const buf_11 = createWeightBuf(device, 97200, getTensorBuffer(safetensor, metadata['convs.4.weight']));
-    const buf_12 = createWeightBuf(device, 120, getTensorBuffer(safetensor, metadata['convs.4.bias']));
-    const buf_13 = createWeightBuf(device, 97200, getTensorBuffer(safetensor, metadata['convs.5.weight']));
-    const buf_14 = createWeightBuf(device, 120, getTensorBuffer(safetensor, metadata['convs.5.bias']));
-    const buf_15 = createWeightBuf(device, 97200, getTensorBuffer(safetensor, metadata['convs.6.weight']));
-    const buf_16 = createWeightBuf(device, 120, getTensorBuffer(safetensor, metadata['convs.6.bias']));
-    const buf_17 = createWeightBuf(device, 97200, getTensorBuffer(safetensor, metadata['convs.7.weight']));
-    const buf_18 = createWeightBuf(device, 120, getTensorBuffer(safetensor, metadata['convs.7.bias']));
-    const buf_19 = createWeightBuf(device, 97200, getTensorBuffer(safetensor, metadata['convs.8.weight']));
-    const buf_20 = createWeightBuf(device, 120, getTensorBuffer(safetensor, metadata['convs.8.bias']));
+    const buf_4 = createEmptyBuf(device, 1409286144);;
+    const buf_5 = createWeightBuf(device, 47628, getTensorBuffer(safetensor, metadata['convs.1.weight']));
+    const buf_6 = createWeightBuf(device, 84, getTensorBuffer(safetensor, metadata['convs.1.bias']));
+    const buf_7 = createWeightBuf(device, 47628, getTensorBuffer(safetensor, metadata['convs.2.weight']));
+    const buf_8 = createWeightBuf(device, 84, getTensorBuffer(safetensor, metadata['convs.2.bias']));
+    const buf_9 = createWeightBuf(device, 47628, getTensorBuffer(safetensor, metadata['convs.3.weight']));
+    const buf_10 = createWeightBuf(device, 84, getTensorBuffer(safetensor, metadata['convs.3.bias']));
+    const buf_11 = createWeightBuf(device, 47628, getTensorBuffer(safetensor, metadata['convs.4.weight']));
+    const buf_12 = createWeightBuf(device, 84, getTensorBuffer(safetensor, metadata['convs.4.bias']));
+    const buf_13 = createWeightBuf(device, 47628, getTensorBuffer(safetensor, metadata['convs.5.weight']));
+    const buf_14 = createWeightBuf(device, 84, getTensorBuffer(safetensor, metadata['convs.5.bias']));
+    const buf_15 = createWeightBuf(device, 47628, getTensorBuffer(safetensor, metadata['convs.6.weight']));
+    const buf_16 = createWeightBuf(device, 84, getTensorBuffer(safetensor, metadata['convs.6.bias']));
+    const buf_17 = createWeightBuf(device, 47628, getTensorBuffer(safetensor, metadata['convs.7.weight']));
+    const buf_18 = createWeightBuf(device, 84, getTensorBuffer(safetensor, metadata['convs.7.bias']));
+    const buf_19 = createWeightBuf(device, 47628, getTensorBuffer(safetensor, metadata['convs.8.weight']));
+    const buf_20 = createWeightBuf(device, 84, getTensorBuffer(safetensor, metadata['convs.8.bias']));
     const buf_21 = createEmptyBuf(device, 1207959552);;
-    const buf_22 = createWeightBuf(device, 2160, getTensorBuffer(safetensor, metadata['convs.9.weight']));
+    const buf_22 = createWeightBuf(device, 1512, getTensorBuffer(safetensor, metadata['convs.9.weight']));
     const buf_23 = createWeightBuf(device, 72, getTensorBuffer(safetensor, metadata['convs.9.bias']));
     const buf_24 = createEmptyBuf(device, 67108864);;
     const output0 = createEmptyBuf(device, 67108864);;
@@ -1613,7 +1550,7 @@ const setupNet = async (device, safetensor) => {
 
     const gpuReadBuffer0 = device.createBuffer({size:output0.size, usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ });
 
-    const kernels = [r_10_256_32_4_8_16_3_4_3_3_3, r_6_3_18, r_10_256_32_4_8_16_30_3_4_3_3_3, r_10_256_32_4_8_16_30_3_4_3_3_3n1, r_10_256_32_4_8_16_30_3_4_3_3_3n2, r_10_256_32_4_8_16_30_3_4_3_3_3n3, r_10_256_32_4_8_16_30_3_4_3_3_3n2, r_10_256_32_4_8_16_30_3_4_3_3_3n1, r_10_256_32_4_8_16_30_3_4_3_3_3, r_10_256_32_4_8_16_30_3_4_3_3_3n4, r_2_32768_8_3_16_4_3_30, r_32768_16_1_32_18, r_32768_4_1_32_4_18];
+    const kernels = [r_7_256_32_4_8_16_3_4_3_3_3, r_6_3_18, r_7_256_32_4_8_16_21_3_4_3_3_3, r_7_256_32_4_8_16_21_3_4_3_3_3n1, r_7_256_32_4_8_16_21_3_4_3_3_3n2, r_7_256_32_4_8_16_21_3_4_3_3_3n3, r_7_256_32_4_8_16_21_3_4_3_3_3n2, r_7_256_32_4_8_16_21_3_4_3_3_3n1, r_7_256_32_4_8_16_21_3_4_3_3_3, r_7_256_32_4_8_16_21_3_4_3_3_3n4, r_2_32768_8_3_16_4_3_21, r_32768_16_1_32_18, r_32768_4_1_32_4_18];
     const pipelines = await Promise.all(kernels.map(async (name, i) => {
       return await device.createComputePipelineAsync({
           layout: device.createPipelineLayout({
@@ -1634,16 +1571,16 @@ const setupNet = async (device, safetensor) => {
         new Float32Array(gpuWriteBuffer0.getMappedRange()).set(_input0);
         gpuWriteBuffer0.unmap();
         commandEncoder.copyBufferToBuffer(gpuWriteBuffer0, 0, input0, 0, gpuWriteBuffer0.size);
-        addComputePass(device, commandEncoder, pipelines[0], layouts[0], infinityBuf, [buf_0, input0, buf_1, buf_2], [128, 256, 10]);
+        addComputePass(device, commandEncoder, pipelines[0], layouts[0], infinityBuf, [buf_0, input0, buf_1, buf_2], [128, 256, 7]);
         addComputePass(device, commandEncoder, pipelines[1], layouts[1], infinityBuf, [buf_3], [6, 1, 1]);
-        addComputePass(device, commandEncoder, pipelines[2], layouts[2], infinityBuf, [buf_4, buf_0, buf_5, buf_6], [128, 256, 10]);
-        addComputePass(device, commandEncoder, pipelines[3], layouts[3], infinityBuf, [buf_0, buf_4, buf_7, buf_8], [128, 256, 10]);
-        addComputePass(device, commandEncoder, pipelines[4], layouts[4], infinityBuf, [buf_4, buf_0, buf_9, buf_10], [128, 256, 10]);
-        addComputePass(device, commandEncoder, pipelines[5], layouts[5], infinityBuf, [buf_0, buf_4, buf_11, buf_12], [128, 256, 10]);
-        addComputePass(device, commandEncoder, pipelines[6], layouts[6], infinityBuf, [buf_4, buf_0, buf_13, buf_14], [128, 256, 10]);
-        addComputePass(device, commandEncoder, pipelines[7], layouts[7], infinityBuf, [buf_0, buf_4, buf_15, buf_16], [128, 256, 10]);
-        addComputePass(device, commandEncoder, pipelines[8], layouts[8], infinityBuf, [buf_4, buf_0, buf_17, buf_18], [128, 256, 10]);
-        addComputePass(device, commandEncoder, pipelines[9], layouts[9], infinityBuf, [buf_0, buf_4, buf_19, buf_20], [128, 256, 10]);
+        addComputePass(device, commandEncoder, pipelines[2], layouts[2], infinityBuf, [buf_4, buf_0, buf_5, buf_6], [128, 256, 7]);
+        addComputePass(device, commandEncoder, pipelines[3], layouts[3], infinityBuf, [buf_0, buf_4, buf_7, buf_8], [128, 256, 7]);
+        addComputePass(device, commandEncoder, pipelines[4], layouts[4], infinityBuf, [buf_4, buf_0, buf_9, buf_10], [128, 256, 7]);
+        addComputePass(device, commandEncoder, pipelines[5], layouts[5], infinityBuf, [buf_0, buf_4, buf_11, buf_12], [128, 256, 7]);
+        addComputePass(device, commandEncoder, pipelines[6], layouts[6], infinityBuf, [buf_4, buf_0, buf_13, buf_14], [128, 256, 7]);
+        addComputePass(device, commandEncoder, pipelines[7], layouts[7], infinityBuf, [buf_0, buf_4, buf_15, buf_16], [128, 256, 7]);
+        addComputePass(device, commandEncoder, pipelines[8], layouts[8], infinityBuf, [buf_4, buf_0, buf_17, buf_18], [128, 256, 7]);
+        addComputePass(device, commandEncoder, pipelines[9], layouts[9], infinityBuf, [buf_0, buf_4, buf_19, buf_20], [128, 256, 7]);
         addComputePass(device, commandEncoder, pipelines[10], layouts[10], infinityBuf, [buf_21, buf_0, buf_22, buf_23], [8, 32768, 2]);
         addComputePass(device, commandEncoder, pipelines[11], layouts[11], infinityBuf, [buf_24, buf_21], [1, 16, 32768]);
         addComputePass(device, commandEncoder, pipelines[12], layouts[12], infinityBuf, [output0, buf_21, buf_24, buf_3], [1, 4, 32768]);

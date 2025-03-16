@@ -1,7 +1,15 @@
 import { Niivue } from '@niivue/niivue'
 // IMPORTANT: we need to import this specific file. 
 import subcortical from "./net_subcortical.js"
-import tissue_fast from './net_tissue_fast.js'
+import tissue_fast from "./net_tissue_fast.js"
+
+const models = {
+  "subcortical": { "net": subcortical, "weightPath": "./net_subcortical.safetensors" },
+  "tissue_fast": { "net": tissue_fast, "weightPath": "./net_tissue_fast.safetensors" }
+}
+
+// TODO: make it selectable from UI
+let selectedModel = models["subcortical"]
 
 async function main() {
   clipCheck.onchange = function () {
@@ -54,7 +62,7 @@ async function main() {
   const getDevice = async () => {
     if (!navigator.gpu) return false;
     const requiredLimits = {};
-    const maxBufferSize = 2013265920;
+    const maxBufferSize = 1409286144;
     requiredLimits.maxStorageBufferBindingSize = maxBufferSize;
     requiredLimits.maxBufferSize = maxBufferSize;
     const adapter = await navigator.gpu.requestAdapter();
@@ -63,6 +71,29 @@ async function main() {
         requiredFeatures: ["shader-f16"]
     });
   };
+
+  const device = await getDevice();
+
+  function convertInMemoryOrder(inverse, size, data) {
+    let output = new Float32Array(data.length)
+    let it = 0;
+
+    for (let x = 0; x < size; x++) {
+      for (let y = 0; y < size; y++) {
+        for (let z = 0; z < size; z++) {
+          let idx = x + y * size + z * size * size;
+          if (inverse) {
+            output[idx] = data[it++];
+          } else {
+            output[it++] = data[idx];
+          }
+        }
+      }
+    }
+
+    return output
+  }
+
   segmentBtn.onclick = async function () {
     if (nv1.volumes.length < 1) {
       window.alert('Please open a voxel-based image')
@@ -72,7 +103,9 @@ async function main() {
     loadingCircle.classList.remove('hidden')
     await closeAllOverlays()
     await ensureConformed()
-    let img32 = new Float32Array(nv1.volumes[0].img)
+
+    let img32 = convertInMemoryOrder(/*inverse*/ false, 256, new Float32Array(nv1.volumes[0].img))
+
     // normalize input data to range 0..1
     let mx = img32[0]
     let mn = mx
@@ -84,26 +117,23 @@ async function main() {
     for (let i = 0; i < img32.length; i++) {
       img32[i] = (img32[i] - mn) * scale32
     }
-
-    // Setup tinygrad meshnet model: get a WebGPU device, load weights
-    const device = await getDevice();
-    // const subcorticalSession = await subcortical.load(device, "./net_subcortical.safetensors");
-    const tissuefastSession = await tissue_fast.load(device, "./net_tissue_fast.safetensors");
+  
+    const session = await selectedModel["net"].load(device, selectedModel["weightPath"]);
 
     const shape = [1, 1, 256, 256, 256]
     const nvox = shape.reduce((a, b) => a * b)
     if (img32.length !== nvox) {
       throw new Error(`img32 length (${img32.length}) does not match expected tensor length (${expectedLength})`)
     }
-    // run tinygrad inference
-    const results = await tissuefastSession(img32);
-    // Can be multi-tensor output, but this model only produces a single output
-    const argMaxImg = results[0];
-    const segmentImg = nv1.cloneVolume(0)
-    segmentImg.img = argMaxImg
-    segmentImg.hdr.datatypeCode = 16 // = float32
+
+    const results = await session(img32);
+   
+    let segmentImg = nv1.cloneVolume(0)
+    segmentImg.img = convertInMemoryOrder(/*inverse*/ true, 256, results[0])
+    segmentImg.hdr.datatypeCode = 16
     segmentImg.hdr.dims[4] = 1
     segmentImg.trustCalMinMax = false
+
     // Add the output to niivue
     const cmap = await fetchJSON('./colormap3.json')
     segmentImg.setColormapLabel(cmap)
