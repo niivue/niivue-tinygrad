@@ -2,14 +2,32 @@ import { Niivue } from '@niivue/niivue'
 // IMPORTANT: we need to import this specific file. 
 import subcortical from "./net_subcortical.js"
 import tissue_fast from "./net_tissue_fast.js"
+import t2 from "./net_t2.js"
 
 const models = {
-  "subcortical": { "net": subcortical, "weightPath": "./net_subcortical.safetensors" },
-  "tissue_fast": { "net": tissue_fast, "weightPath": "./net_tissue_fast.safetensors" }
+  "subcortical": {
+    "net": subcortical,
+    "weightPath": "./net_subcortical.safetensors",
+    "colormap": "./colormap_tissue_subcortical.json",
+    "volume": "./t1_crop.nii.gz"
+  },
+  "tissue_fast": {
+    "net": tissue_fast,
+    "weightPath":
+    "./net_tissue_fast.safetensors",
+    "colormap": "./colormap_tissue_subcortical.json",
+    "volume": "./t1_crop.nii.gz"
+  },
+  "t2": {
+    "net": t2,
+    "weightPath":
+    "./net_t2.safetensors",
+    "colormap": "./colormap_t2.json",
+    "volume": "./M2265_T2w.nii.gz"
+  }
 }
 
-// TODO: make it selectable from UI
-let selectedModel = models["subcortical"]
+let selectedModel = models[document.getElementById("segmentationDropdown").value]
 
 async function main() {
   clipCheck.onchange = function () {
@@ -135,7 +153,7 @@ async function main() {
     segmentImg.trustCalMinMax = false
 
     // Add the output to niivue
-    const cmap = await fetchJSON('./colormap3.json')
+    const cmap = await fetchJSON(selectedModel["colormap"])
     segmentImg.setColormapLabel(cmap)
     segmentImg.opacity = opacitySlider1.value / 255
     await nv1.addVolume(segmentImg)
@@ -157,8 +175,17 @@ async function main() {
   nv1.opts.crosshairGap = 11
   nv1.setInterpolation(true)
   nv1.onImageLoaded = doLoadImage
-  await nv1.loadVolumes([{ url: './t1_crop.nii.gz' }])
+  await nv1.loadVolumes([{ url: selectedModel["volume"] }])
   segmentBtn.onclick()
+
+  document.getElementById("segmentationDropdown").addEventListener("change", async function () {
+    selectedModel = models[this.value]
+    if (nv1.volumes[0].url != selectedModel["volume"]) {
+      nv1.removeVolumeByIndex(0)
+      await nv1.loadVolumes([{ url: selectedModel["volume"] }])
+    }
+    segmentBtn.onclick()
+  });
 }
 
 main()
