@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./niivue.css" />
   <title>Niivue tinygrad</title>
-  <script type="module" crossorigin src="./assets/index-sDrlxs8-.js"></script>
+  <script type="module" crossorigin src="./assets/index-BHvVVUvO.js"></script>
 </head>
 
 <body>
@@ -25,6 +25,12 @@
     <button id="aboutBtn">About</button>
     &nbsp;
     <div id="loadingCircle" class="loading-circle hidden"></div>
+    <label for="segmentationDropdown">Segmentation Type:</label>
+    <select id="segmentationDropdown">
+      <option value="tissue_fast">Tissue Fast</option>
+      <option value="subcortical">Subcortical</option>
+      <option value="t2">T2 Lesion</option>
+    </select>
   </header>
   <main id="canvas-container">
     <canvas id="gl1"></canvas>
